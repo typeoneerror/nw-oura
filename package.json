@@ -1,21 +1,25 @@
 {
-	"name": "@notionhq/workers-template",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"build": "tsc",
-		"check": "tsc --noEmit"
-	},
-	"engines": {
-		"node": ">=22.0.0",
-		"npm": ">=10.9.2"
-	},
-	"devDependencies": {
-		"@types/node": "^22.9.0",
-		"tsx": "^4.20.6",
-		"typescript": "^5.8.0"
-	},
-	"dependencies": {
-		"@notionhq/workers": ">=0.0.0"
-	}
+  "name": "@notionhq/workers-template",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "local": "ntn workers exec fetchOuraScores --local -d '{\"date\": \"2026-05-12\"}'"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.8.0"
+  },
+  "dependencies": {
+    "@notionhq/workers": ">=0.0.0",
+    "axios": "^1.13.2",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0"
+  }
 }

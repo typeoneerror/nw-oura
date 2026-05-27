@@ -27,10 +27,16 @@ const dateIsoFormat = 'yyyy-MM-dd';
  * So perhaps you run this script twice a day to make sure you get Activity later!
  *
  * @param {String} type  One of 'readiness', 'sleep', or 'activity'
+ * @param {String} date  End date in 'yyyy-MM-dd' format
+ * @param {String} timeZone  IANA time zone identifier (e.g. 'America/Los_Angeles')
  *
  * @returns {Number}  Latest score by type
  */
-async function fetchOuraScore(type: string, date: string, timeZone: string) {
+async function fetchOuraScore(
+  type: 'readiness' | 'sleep' | 'activity',
+  date: string,
+  timeZone: string
+) {
   // GET https://api.ouraring.com/v2/usercollection/daily_<type>?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD
 
   const endDate = date;
@@ -48,7 +54,7 @@ async function fetchOuraScore(type: string, date: string, timeZone: string) {
 }
 
 async function fetchOuraScores(date: string, timeZone: string) {
-  return await ['readiness', 'sleep', 'activity'].reduce(async (scores, type) => {
+  return await (['readiness', 'sleep', 'activity'] as const).reduce(async (scores, type) => {
     const score = await fetchOuraScore(type, date, timeZone);
 
     return {
